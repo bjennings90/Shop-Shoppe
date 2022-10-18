@@ -10,6 +10,13 @@ import Cart from '../components/Cart';
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 
+import {
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+  ADD_TO_CART,
+  UPDATE_PRODUCTS,
+} from '../utils/actions';
+
 function Detail() {
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
@@ -30,6 +37,13 @@ function Detail() {
       });
     }
   }, [products, data, dispatch, id]);
+
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      product: { ...currentProduct, purchaseQuantity: 1 }
+    });
+  };
 
   return (
     <>
@@ -54,7 +68,7 @@ function Detail() {
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
-        <Cart />
+      <Cart />
     </>
   );
 }

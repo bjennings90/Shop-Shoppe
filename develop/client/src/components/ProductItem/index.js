@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
 
 function ProductItem(item) {
+  const [state, dispatch] = useStoreContext();
+
+  const addToCart = () => {
+    dispatch({
+      type: ADD_TO_CART,
+      product: { ...item, purchaseQuantity: 1 }
+    });
+  };
+
   const {
     image,
     name,
@@ -24,7 +33,7 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button>Add to cart</button>
+      <button onClick={addToCart}>Add to cart</button>
     </div>
   );
 }
