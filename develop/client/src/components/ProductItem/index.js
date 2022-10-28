@@ -16,7 +16,7 @@ function ProductItem(item) {
     quantity
   } = item;
 
-  const { cart } = state;
+  const { cart } = state
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
@@ -37,7 +37,7 @@ function ProductItem(item) {
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
-  };
+  }
 
   return (
     <div className="card px-1 py-1">
